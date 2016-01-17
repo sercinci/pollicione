@@ -1,0 +1,35 @@
+<md-toolbar flex layout="row" class="bottom">
+  <md-button aria-label="Create Event" flex ng-click="groupDetail.swipe('eventCreate')">
+    <span class="fa fa-paper-plane-o fa-2x"></span>
+  </md-button>
+  <md-button aria-label="Notifications" flex ng-click="groupDetail.swipe('home')">
+    <span class="fa fa-bullhorn fa-2x"></span>
+  </md-button> 
+  <md-button aria-label="Groups" flex ng-click="groupDetail.swipe('group')">
+    <span class="fa fa-users fa-2x"></span>
+  </md-button>  
+</md-toolbar>
+
+<md-toolbar>
+  <div class="md-toolbar-tools">
+    <h1 class="md-flex">Pollicione - {{ groupDetail.group.name }}</h1>
+  </div>
+</md-toolbar>
+
+<md-card class"bigCard">
+  <ng-md-icon ng-if="!groupDetail.isOwner && !groupDetail.show" ng-click="groupDetail.leave(-1)" icon="clear" style="fill: purple" size="20"></ng-md-icon>
+  <h2>Descrizione:</h2>
+  <p>{{ groupDetail.group.description }}</p>
+  <h2>Membri: {{ groupDetail.group.members.length }}</h2>
+  <ul>
+    <li ng-repeat="member in groupDetail.group.members"><ng-md-icon ng-if="groupDetail.isOwner && member.username != groupDetail.group.owner" ng-click="groupDetail.remove(member.id)" icon="clear" style="fill: red" size="20"></ng-md-icon> <ng-md-icon ng-if="member.username === groupDetail.group.owner"icon="grade" style="fill: gold" size="20"></ng-md-icon> <span>{{ member.username }}</span>
+    </li>
+    <li ng-if="groupDetail.isOwner">
+      <form name="groupAddMemberForm" ng-submit="groupDetail.add(members)">
+          <input type="text" ng-model="members" ng-required="false"> <md-button type="submit" class="md-raised"><ng-md-icon icon="add" style="fill: green" size="20"></ng-md-icon></md-button>
+      </form>
+    </li>
+  </ul>
+  <md-button ng-if="groupDetail.show" class="md-raised md-accent" ng-click="groupDetail.reply('accept')">Accetta invito</md-button>
+  <md-button ng-if="groupDetail.show" class="md-raised md-accent" ng-click="groupDetail.reply('decline')">Rifiuta invito</md-button>
+</md-card>

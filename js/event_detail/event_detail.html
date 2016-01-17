@@ -1,0 +1,44 @@
+<md-toolbar flex layout="row" class="bottom">
+  <md-button aria-label="Create Event" flex ng-click="eventDetail.swipe('eventCreate')">
+    <span class="fa fa-paper-plane-o fa-2x"></span>
+  </md-button>
+  <md-button aria-label="Notifications" flex ng-click="eventDetail.swipe('home')">
+    <span class="fa fa-bullhorn fa-2x"></span>
+  </md-button> 
+  <md-button aria-label="Groups" flex ng-click="eventDetail.swipe('group')">
+    <span class="fa fa-users fa-2x"></span>
+  </md-button>  
+</md-toolbar>
+
+<md-toolbar>
+  <div class="md-toolbar-tools">
+    <h1 class="md-flex">Pollicione - {{ eventDetail.eve.title }}</h1>
+  </div>
+</md-toolbar>
+
+<md-card class="bigCard">
+  <h5>Gruppo: {{ eventDetail.eve.group.name }}</h5>
+  <h2>Descrizione:</h2>
+  <p>{{ eventDetail.eve.description }}</p>
+  <h2>Data:</h2>
+  <p>{{ eventDetail.eve.date | date:'dd-MM-yyyy HH:mm'}}</p>
+  <h2>Numero minimo partecipanti:</h2>
+  <p>{{ eventDetail.eve.min_partecipants }}</p>
+  <h2>Stato:</h2>
+  <h4>Partecipanti:</h4>
+  <ul>
+    <li ng-repeat="guest in eventDetail.eve.positiveGuests">{{ guest.username }}</li>
+  </ul>
+  <h4>Non risposto:</h4>
+  <ul>
+    <li ng-repeat="guest in eventDetail.eve.pendingGuests">{{ guest.username }}</li>
+  </ul>
+  <h4>Non partecipanti:</h4>
+  <ul>
+    <li ng-repeat="guest in eventDetail.eve.negativeGuests">{{ guest.username }}</li>
+  </ul>
+  <h2>Rispondere entro:</h2>
+  <p>{{ eventDetail.eve.expire_date | date:'dd-MM-yyyy HH:mm'}}</p>
+  <md-button ng-if="eventDetail.show" class="md-raised md-accent" ng-click="eventDetail.reply('accept')">Accetta invito</md-button>
+  <md-button ng-if="eventDetail.show" class="md-raised md-accent" ng-click="eventDetail.reply('decline')">Rifiuta invito</md-button>
+</md-card>

@@ -1,0 +1,32 @@
+ul {
+	list-style: none;
+}
+
+.bottom {
+	position: fixed;
+	z-index: 100;
+	bottom: 0px;
+}
+
+.header {
+	position: fixed;
+	z-index: 100;
+	float: left; 
+	width: 100%;
+}
+
+.content {
+	margin-top: 48px;
+}
+
+md-card {
+	margin-top: 15px;
+}
+
+.bigCard {
+	margin-bottom: 96px;
+}
+
+.selected {
+	background-color: rgba(255, 223, 61, 0.2);
+}
