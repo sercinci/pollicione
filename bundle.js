@@ -60362,19 +60362,21 @@ angular.module('pollicioneApp', [
   require('angular-material'),
   'pollicioneApp.login',
   'pollicioneApp.home',
-  'ngMaterial',
-  'ngMaterialDatePicker',
-  'ngMdIcons',
   'pollicioneApp.signup',
   'pollicioneApp.group',
   'pollicioneApp.groupDetail',
   'pollicioneApp.groupCreate',
   'pollicioneApp.eventDetail',
-  'pollicioneApp.eventCreate'
+  'pollicioneApp.eventCreate',
+  'ngMaterial',
+  //'ngMaterialDatePicker'
+  //'ngMdIcons'
 ])
 
 .constant('APP_CONFIG', {
-  'apiURL': 'http://localhost:4000',
+  //'apiURL': 'http://pollicione.eu-gb.mybluemix.net',
+  //10.213.4.78
+  'apiURL': 'http://10.213.4.78:4000',
 })
 /*
 .config(function($httpProvider, $mdThemingProvider) {
@@ -60394,9 +60396,14 @@ angular.module('pollicioneApp', [
   'X-Parse-JavaScript-Key': 'WjcVoHtgTwShNz3hjKkC9dLNBeTthKNNYLuFvkOO'
 })
 */
-.config(['$urlRouterProvider', '$httpProvider', 'APP_CONFIG', function($urlRouterProvider, $httpProvider, APP_CONFIG){
+.config(['$urlRouterProvider', '$httpProvider', 'APP_CONFIG', '$mdThemingProvider',function($urlRouterProvider, $httpProvider, APP_CONFIG, $mdThemingProvider){
 
   $httpProvider.defaults.useXDomain = true;
+  $mdThemingProvider.theme('default')
+    .primaryPalette('orange')
+    .accentPalette('deep-orange')
+    .warnPalette('red')
+    .backgroundPalette('grey');
 
   //If no url is matched fallback to home state
   $urlRouterProvider.otherwise(function($injector){
@@ -60405,7 +60412,7 @@ angular.module('pollicioneApp', [
   });
 
   $httpProvider.defaults.headers.common = {
-    //'X-Parse-Application-Id' : APP_CONFIG['X-Parse-Application-Id'],
+    //'X-Parse-Application-Id' : 'ff6c4fe4-7828-4d0b-bfa8-eda7899fee44',
     //'X-Parse-JavaScript-Key' : APP_CONFIG['X-Parse-JavaScript-Key'],
     'Content-Type' : 'application/json; charset=utf-8'
   };
