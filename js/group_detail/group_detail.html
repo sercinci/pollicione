@@ -1,12 +1,12 @@
 <md-toolbar flex layout="row" class="bottom">
   <md-button aria-label="Create Event" flex ng-click="groupDetail.swipe('eventCreate')">
-    <span class="fa fa-paper-plane-o fa-2x"></span>
+    <span class="fa fa-paper-plane-o fa-2x orange"></span>
   </md-button>
   <md-button aria-label="Notifications" flex ng-click="groupDetail.swipe('home')">
-    <span class="fa fa-bullhorn fa-2x"></span>
+    <span class="fa fa-bullhorn fa-2x orange"></span>
   </md-button> 
   <md-button aria-label="Groups" flex ng-click="groupDetail.swipe('group')">
-    <span class="fa fa-users fa-2x"></span>
+    <span class="fa fa-users fa-2x orange"></span>
   </md-button>  
 </md-toolbar>
 
@@ -16,7 +16,7 @@
   </div>
 </md-toolbar>
 
-<md-card class"bigCard">
+<md-card class"bigCard" layout-padding layout-margin>
   <ng-md-icon ng-if="!groupDetail.isOwner && !groupDetail.show" ng-click="groupDetail.leave(-1)" icon="clear" style="fill: purple" size="20"></ng-md-icon>
   <h2>Descrizione:</h2>
   <p>{{ groupDetail.group.description }}</p>

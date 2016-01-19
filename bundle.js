@@ -60374,9 +60374,9 @@ angular.module('pollicioneApp', [
 ])
 
 .constant('APP_CONFIG', {
-  //'apiURL': 'http://pollicione.eu-gb.mybluemix.net',
+  'apiURL': 'http://pollicione.eu-gb.mybluemix.net',
   //10.213.4.78
-  'apiURL': 'http://10.213.4.78:4000',
+  //'apiURL': 'http://10.213.4.78:4000',
 })
 /*
 .config(function($httpProvider, $mdThemingProvider) {
@@ -60514,6 +60514,11 @@ function EventDetailCtrl($http, APP_CONFIG, $state, $window, $stateParams) {
     $state.go(path);
   };
   
+  vm.progress = function() {
+    var now = new Date().getTime();
+    return 100 - Math.round((new Date(vm.eve.expire_date).getTime() - now) / (1000000))
+  };
+
   vm.reply = function(reply) {
     var userReply = {
       reply: reply,
@@ -60568,7 +60573,8 @@ function GroupCtrl($http, APP_CONFIG, $state, $window) {
 var angular = require('angular');
 
 angular.module('pollicioneApp.groupCreate', [
-  require('angular-ui-router')
+  require('angular-ui-router'),
+  'ngMaterial'
 ])
 
 .config(['$stateProvider', function($stateProvider) {
@@ -60583,8 +60589,11 @@ angular.module('pollicioneApp.groupCreate', [
 
 .controller('GroupCreateCtrl', GroupCreateCtrl);
 
-function GroupCreateCtrl($http, APP_CONFIG, $state, $window) {
+function GroupCreateCtrl($http, APP_CONFIG, $state, $window, $mdConstant) {
   var vm = this;
+
+  vm.keys = [$mdConstant.KEY_CODE.COMMA];
+  vm.tags = [];
 
   vm.swipe = function(path) {
     $state.go(path);
@@ -60598,8 +60607,8 @@ function GroupCreateCtrl($http, APP_CONFIG, $state, $window) {
     }
     $http.post(APP_CONFIG.apiURL + '/api/newgroup?token=' + $window.sessionStorage.token, groupData, {withCredentials: true})
       .then(function(resp) {
-        if (resp.data.success === true) {
-          $state.swipe('group');
+        if (resp.data.success == true) {
+          $state.go('group');
         } else {
           $state.reload('groupCreate');
           vm.message = resp.data.message;

@@ -1,12 +1,12 @@
 <md-toolbar flex layout="row" class="bottom">
   <md-button aria-label="Create Event" flex ng-click="groupCreate.swipe('eventCreate')">
-    <span class="fa fa-paper-plane-o fa-2x"></span>
+    <span class="fa fa-paper-plane-o fa-2x orange"></span>
   </md-button>
   <md-button aria-label="Notifications" flex ng-click="groupCreate.swipe('home')">
-    <span class="fa fa-bullhorn fa-2x"></span>
+    <span class="fa fa-bullhorn fa-2x orange"></span>
   </md-button> 
   <md-button aria-label="Groups" flex ng-click="groupCreate.swipe('group')">
-    <span class="fa fa-users fa-2x"></span>
+    <span class="fa fa-users fa-2x orange"></span>
   </md-button>  
 </md-toolbar>
 
@@ -16,20 +16,21 @@
   </div>
 </md-toolbar>
 
-<md-card>
+<md-card layout-padding layout-margin>
   <form name="groupCreateForm" ng-submit="groupCreate.create(group)">
   <md-input-container>
-    Name
-    <input type="text" ng-model="group.name" ng-required="true">
+    
+    <input type="text" ng-model="group.name" ng-required="true" placeholder="Name">
   </md-input-container>
   <md-input-container>
-    Description
-    <input type="textarea" ng-model="group.description" ng-required="true">
+    
+    <input type="textarea" ng-model="group.description" ng-required="true" placeholder="Description">
   </md-input-container>
   <md-input-container>
-    Invitations (separate each username with , )
-    <input type="text" ng-model="group.members" ng-required="false">
+    <input type="text" ng-model="group.members" ng-required="false" placeholder="Invite separated with comma">
   </md-input-container>
-  <md-button type="submit" class="md-raised md-warn">Create this group!!</md-button>
+  <div layout="column" layout-align="end">
+    <md-button type="submit" class="md-raised md-primary">Create this group!!</md-button>
+  </div>
   </form>
 </md-card>
