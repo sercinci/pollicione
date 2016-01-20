@@ -60369,7 +60369,7 @@ angular.module('pollicioneApp', [
   'pollicioneApp.eventDetail',
   'pollicioneApp.eventCreate',
   'ngMaterial',
-  'ngMaterialDatePicker',
+  //'ngMaterialDatePicker',
   //'ngMdIcons'
 ])
 
