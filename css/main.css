@@ -43,6 +43,7 @@ md-toolbar:not(.md-menu-toolbar) {
 
 .detailContainer {
 	padding-bottom: 72px;
+	margin-top: 5px;
 }
 
 .pending {
@@ -71,4 +72,16 @@ md-toolbar:not(.md-menu-toolbar) {
 h3, h5 {
 	margin-top: 10px;
 	margin-bottom: 10px;
+}
+
+.red {
+	color: red;
+}
+
+.gold {
+	color: gold;
+}
+
+.green {
+	color: green;
 }

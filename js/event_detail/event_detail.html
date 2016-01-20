@@ -1,6 +1,6 @@
 <md-toolbar flex layout="row" class="bottom">
   <md-button aria-label="Create Event" flex ng-click="eventDetail.swipe('eventCreate')">
-    <span class="fa fa-paper-plane-o fa-2x orange"></span>
+    <span class="fa fa-paper-plane fa-2x orange"></span>
   </md-button>
   <md-button aria-label="Notifications" flex ng-click="eventDetail.swipe('home')">
     <span class="fa fa-bullhorn fa-2x orange"></span>
@@ -24,7 +24,7 @@
   <span>{{ eventDetail.eve.date | date:'dd-MM-yyyy HH:mm'}}</span>
   <h5>Numero minimo partecipanti:</h5>
   <span>{{ eventDetail.eve.min_partecipants }}</span>
-  <h5>Stato:</h5><span ng-if="eventDetail.eve.status == true" class="fa fa-thumbs-up orange"></span><span ng-if="eventDetail.eve.status == null" class="fa fa-thumbs-down orange"></span>
+  <h5>Stato:</h5><span ng-if="eventDetail.eve.status == true" class="fa fa-thumbs-up green"></span><span ng-if="eventDetail.eve.status == null" class="fa fa-thumbs-down red"></span>
   <h5>Partecipanti:</h5>
   <ul>
     <li ng-repeat="guest in eventDetail.eve.positiveGuests">{{ guest.username }}</li>
@@ -40,8 +40,8 @@
   <h5>Rispondere entro:</h5>
   <span>{{ eventDetail.eve.expire_date | date:'dd-MM-yyyy HH:mm'}}</span>
   <md-progress-linear md-mode="determinate" value="{{eventDetail.progress}}"></md-progress-linear>
-  <div class="detailContainer">
-    <md-button ng-if="eventDetail.show" class="md-raised md-primary" ng-click="eventDetail.reply('accept')">Accetta invito</md-button>
-    <md-button ng-if="eventDetail.show" class="md-raised md-primary" ng-click="eventDetail.reply('decline')">Rifiuta invito</md-button>
+  <div class="detailContainer" layout="column" layout-align="end">
+    <md-button ng-if="eventDetail.show" class="md-raised md-primary" ng-click="eventDetail.reply('accept')"><span class="fa fa-thumbs-up"></span> Accetta invito</md-button>
+    <md-button ng-if="eventDetail.show" class="md-raised md-primary" ng-click="eventDetail.reply('decline')"><span class="fa fa-thumbs-down"></span> Rifiuta invito</md-button>
   </div>
 </div>

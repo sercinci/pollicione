@@ -24,9 +24,6 @@
 	<md-card ng-repeat="grup in group.groups" ng-click="group.go('groupDetail', grup.id)" layout-padding class="groupList">
 		<h3>{{ grup.name }}</h3>
 	</md-card>
-	<md-card layout-padding class="groupList">
-		<h3>Prova weila</h3>
-	</md-card>
 	<div layout="column" layout-align="end" class="detailContainer">
     	<md-button class="md-raised md-primary" ng-click="group.swipe('groupCreate')">Create new group!!</md-button>
   	</div>

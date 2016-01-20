@@ -17,19 +17,20 @@
 </md-toolbar>
 
 <md-card class"bigCard" layout-padding layout-margin>
-  <ng-md-icon ng-if="!groupDetail.isOwner && !groupDetail.show" ng-click="groupDetail.leave(-1)" icon="clear" style="fill: purple" size="20"></ng-md-icon>
-  <h2>Descrizione:</h2>
-  <p>{{ groupDetail.group.description }}</p>
-  <h2>Membri: {{ groupDetail.group.members.length }}</h2>
+  <span ng-if="!groupDetail.isOwner && !groupDetail.show" ng-click="groupDetail.leave(-1)" class="fa fa-times"></span>
+  <h5>Descrizione:</h5>
+  <span>{{ groupDetail.group.description }}</span>
+  <h5>Membri: {{ groupDetail.group.members.length }}</h5>
   <ul>
-    <li ng-repeat="member in groupDetail.group.members"><ng-md-icon ng-if="groupDetail.isOwner && member.username != groupDetail.group.owner" ng-click="groupDetail.remove(member.id)" icon="clear" style="fill: red" size="20"></ng-md-icon> <ng-md-icon ng-if="member.username === groupDetail.group.owner"icon="grade" style="fill: gold" size="20"></ng-md-icon> <span>{{ member.username }}</span>
+    <li ng-repeat="member in groupDetail.group.members"><span ng-if="groupDetail.isOwner && member.username != groupDetail.group.owner" ng-click="groupDetail.remove(member.id)" class="fa fa-times red"></span><span ng-if="member.username === groupDetail.group.owner"class="fa fa-hand-o-right gold"></span><span> {{ member.username }}</span>
     </li>
     <li ng-if="groupDetail.isOwner">
       <form name="groupAddMemberForm" ng-submit="groupDetail.add(members)">
-          <input type="text" ng-model="members" ng-required="false"> <md-button type="submit" class="md-raised"><ng-md-icon icon="add" style="fill: green" size="20"></ng-md-icon></md-button>
+          <input type="text" ng-model="members" ng-required="false">
+          <md-button type="submit" class="md-raised md-primary"><span class="fa fa-plus"></span></md-button>
       </form>
     </li>
   </ul>
-  <md-button ng-if="groupDetail.show" class="md-raised md-accent" ng-click="groupDetail.reply('accept')">Accetta invito</md-button>
-  <md-button ng-if="groupDetail.show" class="md-raised md-accent" ng-click="groupDetail.reply('decline')">Rifiuta invito</md-button>
+  <md-button ng-if="groupDetail.show" class="md-raised md-primary" ng-click="groupDetail.reply('accept')"><span class="fa fa-thumbs-up"></span> Accetta invito</md-button>
+  <md-button ng-if="groupDetail.show" class="md-raised md-primary" ng-click="groupDetail.reply('decline')"><span class="fa fa-thumbs-down"></span> Rifiuta invito</md-button>
 </md-card>
