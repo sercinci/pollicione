@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.phonegap.helloworld" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-    <name>Hello World</name>
+    <name>Pollicione</name>
     <description>
-        Hello World sample application that responds to the deviceready event.
+        Pollicione is the app for group events.
     </description>
-    <author email="support@phonegap.com" href="http://phonegap.com">
-        PhoneGap Team
+    <author email="federico_ercole91@yahoo.it" href="sercinci.altervista.org">
+        sercinci
     </author>
     <content src="index.html" />
     <preference name="permissions" value="none" />
@@ -68,6 +68,7 @@
     <gap:splash gap:platform="winphone" src="www/res/screen/windows-phone/screen-portrait.jpg" />
     <access origin="*" />
     <plugin name="cordova-plugin-whitelist" version="1" />
+    <plugin name="org.crosswalk.engine" spec="1.3.0" source="pgb" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />
