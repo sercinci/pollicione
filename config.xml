@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.phonegap.helloworld" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="<com class="phonegap pollicione"></com>" version="0.1.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>Pollicione</name>
     <description>
         Pollicione is the app for group events.
@@ -69,6 +69,7 @@
     <access origin="*" />
     <plugin name="cordova-plugin-whitelist" version="1" />
     <plugin name="org.crosswalk.engine" spec="1.3.0" source="pgb" />
+    <plugin name="phonegap-plugin-push" source="npm" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />
