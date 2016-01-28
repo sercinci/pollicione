@@ -60426,10 +60426,7 @@ function onDeviceReady(){
     "windows": {} 
   });
 
-  push.on('registration', function(data) {
-    console.log(data.registrationId);
-    alert(data.registrationId);
-  });
+  
 
   push.on('notification', function(data) {
     console.log(data.message);
@@ -60792,9 +60789,14 @@ function LoginCtrl($http, APP_CONFIG, $state, $window) {
   };
 
   vm.signIn = function(w) {
+    push.on('registration', function(data) {
+      console.log(data.registrationId);
+      alert(data.registrationId);
+    });
     var userData = {
       username: w.username,
-      password: w.password
+      password: w.password,
+      registrationId: data.registrationId
     }
     console.log(userData)
     $http.post(APP_CONFIG.apiURL + '/api/signin', userData, {
@@ -60804,6 +60806,7 @@ function LoginCtrl($http, APP_CONFIG, $state, $window) {
         console.log(resp.data);
         if (resp.data.success === true) {
           $window.sessionStorage.token = resp.data.token;
+
           $state.go('home');
           //console.log($window.sessionStorage.token)
         } else {
