@@ -60798,7 +60798,7 @@ function LoginCtrl($http, APP_CONFIG, $state, $window) {
     var userData = {
       username: w.username,
       password: w.password,
-      registrationId: weilaSonoUnRegisterId1234
+      registrationId: 'weilaSonoUnRegisterId1234'
     }
     console.log(userData)
     $http.post(APP_CONFIG.apiURL + '/api/signin', userData, {
