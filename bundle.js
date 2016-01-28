@@ -60406,7 +60406,12 @@ angular.module('pollicioneApp', [
   //If no url is matched fallback to home state
   $urlRouterProvider.otherwise(function($injector){
     var $state = $injector.get('$state');
-    $state.go('home');
+    if(localStorage.token) {
+      $state.go('home');
+    } else {
+      $state.go('login');
+    }
+    
   });
 
   $httpProvider.defaults.headers.common = {
