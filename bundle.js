@@ -60427,7 +60427,11 @@ function onDeviceReady(){
     "windows": {} 
   });
 
-  
+  push.on('registration', function(data) {
+      console.log(data.registrationId);
+      alert(data.registrationId);
+      $window.sessionStorage.registrationId = data.registrationId;
+  });
 
   push.on('notification', function(data) {
     console.log(data.message);
@@ -60791,15 +60795,11 @@ function LoginCtrl($http, APP_CONFIG, $state, $window) {
   };
 
   vm.signIn = function(w) {
-    var registrationId = push.on('registration', function(data) {
-      console.log(data.registrationId);
-      //alert(data.registrationId);
-      return data.registrationId;
-    });
+    
     var userData = {
       username: w.username,
       password: w.password,
-      registrationId: registrationId
+      registrationId: $window.sessionStorage.registrationId
     }
     console.log(userData)
     $http.post(APP_CONFIG.apiURL + '/api/signin', userData, {
