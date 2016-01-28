@@ -60422,7 +60422,7 @@ document.addEventListener("deviceready",onDeviceReady,false);
 function onDeviceReady(){
   console.log("Device Ready")
   var push = PushNotification.init({ 
-    "android": {"senderID": " 743381627946"},
+    "android": {"senderID": " 743381627946", "forceShow": true, "sound": true, "vibrate": true},
     "ios": {"alert": "true", "badge": "true", "sound": "true"}, 
     "windows": {} 
   });
