@@ -60429,9 +60429,7 @@ function onDeviceReady(){
 
   push.on('registration', function(data) {
       console.log(data.registrationId);
-      
-      $window.sessionStorage.registrationId = data.registrationId;
-      alert($window.sessionStorage.registrationId);
+      alert(data.registrationId)
   });
 
   push.on('notification', function(data) {
