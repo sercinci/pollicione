@@ -60406,7 +60406,7 @@ angular.module('pollicioneApp', [
   //If no url is matched fallback to home state
   $urlRouterProvider.otherwise(function($injector){
     var $state = $injector.get('$state');
-    $state.go('login');
+    $state.go('home');
   });
 
   $httpProvider.defaults.headers.common = {
@@ -60430,12 +60430,12 @@ function onDeviceReady(){
   push.on('registration', function(data) {
       console.log(data.registrationId);
       localStorage.registrationId = data.registrationId;
-      alert(localStorage.registrationId)
+      //alert(localStorage.registrationId)
   });
 
   push.on('notification', function(data) {
     console.log(data.message);
-    alert(data.title+" Message: " +data.message);
+    //alert(data.title+" Message: " +data.message);
     // data.title,
     // data.count,
     // data.sound,
@@ -60470,7 +60470,7 @@ angular.module('pollicioneApp.eventCreate', [
 function EventCreateCtrl($http, APP_CONFIG, $state, $window) {
   var vm = this;
 
-  $http.get(APP_CONFIG.apiURL + '/api/newevent?token=' + $window.sessionStorage.token)
+  $http.get(APP_CONFIG.apiURL + '/api/newevent?token=' + localStorage.token)
     .then(function(resp) {
       vm.userGroups = resp.data.userGroups;
     });
@@ -60493,7 +60493,7 @@ function EventCreateCtrl($http, APP_CONFIG, $state, $window) {
       group_id: w.groupId
     }
 
-    $http.post(APP_CONFIG.apiURL + '/api/newevent?token=' + $window.sessionStorage.token, eventData, {withCredentials: true})
+    $http.post(APP_CONFIG.apiURL + '/api/newevent?token=' + localStorage.token, eventData, {withCredentials: true})
       .then(function(resp) {
         if (resp.data.success === true) {
           //alert('weila' + w.date);
@@ -60530,7 +60530,7 @@ angular.module('pollicioneApp.eventDetail', [
 function EventDetailCtrl($http, APP_CONFIG, $state, $window, $stateParams) {
   var vm = this;
   
-  $http.get(APP_CONFIG.apiURL + '/api/events/' + $stateParams.eventId + '?token=' + $window.sessionStorage.token)
+  $http.get(APP_CONFIG.apiURL + '/api/events/' + $stateParams.eventId + '?token=' + localStorage.token)
     .then(function(resp) {
       var guest = resp.data.guest;
       vm.eve = resp.data.eve;
@@ -60550,7 +60550,7 @@ function EventDetailCtrl($http, APP_CONFIG, $state, $window, $stateParams) {
     var userReply = {
       reply: reply,
     };
-    $http.post(APP_CONFIG.apiURL + '/api/events/' + $stateParams.eventId + '?token=' + $window.sessionStorage.token, userReply)
+    $http.post(APP_CONFIG.apiURL + '/api/events/' + $stateParams.eventId + '?token=' + localStorage.token, userReply)
     .then(function(resp) {
       console.log(resp)
       $state.go('home');
@@ -60588,7 +60588,7 @@ function GroupCtrl($http, APP_CONFIG, $state, $window) {
     $state.go(path, {'groupId': param});
   };
   
-  $http.get(APP_CONFIG.apiURL + '/api/groups?token=' + $window.sessionStorage.token)
+  $http.get(APP_CONFIG.apiURL + '/api/groups?token=' + localStorage.token)
     .then(function(resp) {
       //vm.username = resp.data.username;
       console.log(resp.data)
@@ -60632,7 +60632,7 @@ function GroupCreateCtrl($http, APP_CONFIG, $state, $window, $mdConstant) {
       description: w.description,
       members: w.members
     }
-    $http.post(APP_CONFIG.apiURL + '/api/newgroup?token=' + $window.sessionStorage.token, groupData, {withCredentials: true})
+    $http.post(APP_CONFIG.apiURL + '/api/newgroup?token=' + localStorage.token, groupData, {withCredentials: true})
       .then(function(resp) {
         if (resp.data.success == true) {
           $state.go('group');
@@ -60668,7 +60668,7 @@ angular.module('pollicioneApp.groupDetail', [
 function GroupDetailCtrl($http, APP_CONFIG, $state, $window, $stateParams) {
   var vm = this;
   
-  $http.get(APP_CONFIG.apiURL + '/api/groups/' + $stateParams.groupId + '?token=' + $window.sessionStorage.token)
+  $http.get(APP_CONFIG.apiURL + '/api/groups/' + $stateParams.groupId + '?token=' + localStorage.token)
     .then(function(resp) {
       var isMember = resp.data.isMember;
       vm.isOwner = resp.data.isOwner;
@@ -60684,7 +60684,7 @@ function GroupDetailCtrl($http, APP_CONFIG, $state, $window, $stateParams) {
     var userReply = {
       reply: reply,
     };
-    $http.post(APP_CONFIG.apiURL + '/api/groups/' + $stateParams.groupId + '?token=' + $window.sessionStorage.token, userReply)
+    $http.post(APP_CONFIG.apiURL + '/api/groups/' + $stateParams.groupId + '?token=' + localStorage.token, userReply)
     .then(function(resp) {
       console.log(resp.data)
       $state.go('group');
@@ -60695,7 +60695,7 @@ function GroupDetailCtrl($http, APP_CONFIG, $state, $window, $stateParams) {
     var user = {
       userId: userId,
     };
-    $http.post(APP_CONFIG.apiURL + '/api/groups_remove/' + $stateParams.groupId + '?token=' + $window.sessionStorage.token, user)
+    $http.post(APP_CONFIG.apiURL + '/api/groups_remove/' + $stateParams.groupId + '?token=' + localStorage.token, user)
     .then(function(resp) {
       console.log(resp.data)
       $state.reload('groupDetail', $stateParams.groupId);
@@ -60706,7 +60706,7 @@ function GroupDetailCtrl($http, APP_CONFIG, $state, $window, $stateParams) {
     var users = {
       usernames: usernames,
     };
-    $http.post(APP_CONFIG.apiURL + '/api/groups_add/' + $stateParams.groupId + '?token=' + $window.sessionStorage.token, users)
+    $http.post(APP_CONFIG.apiURL + '/api/groups_add/' + $stateParams.groupId + '?token=' + localStorage.token, users)
     .then(function(resp) {
       console.log(resp.data)
       $state.reload('groupDetail', $stateParams.groupId);
@@ -60717,7 +60717,7 @@ function GroupDetailCtrl($http, APP_CONFIG, $state, $window, $stateParams) {
     var user = {
       userId: userId,
     };
-    $http.post(APP_CONFIG.apiURL + '/api/groups_remove/' + $stateParams.groupId + '?token=' + $window.sessionStorage.token, user)
+    $http.post(APP_CONFIG.apiURL + '/api/groups_remove/' + $stateParams.groupId + '?token=' + localStorage.token, user)
     .then(function(resp) {
       console.log(resp.data)
       $state.go('group');
@@ -60755,7 +60755,7 @@ function HomeCtrl($http, APP_CONFIG, $state, $window) {
     $state.go(path);
   };
 
-  $http.get(APP_CONFIG.apiURL + '/api/events?token=' + $window.sessionStorage.token)
+  $http.get(APP_CONFIG.apiURL + '/api/events?token=' + localStorage.token)
     .then(function(resp) {
       vm.positiveEvents = resp.data.positiveEvents;
       vm.pendingEvents = resp.data.pendingEvents;
@@ -60808,12 +60808,12 @@ function LoginCtrl($http, APP_CONFIG, $state, $window) {
       .then(function(resp) {
         console.log(resp.data);
         if (resp.data.success === true) {
-          $window.sessionStorage.token = resp.data.token;
+          localStorage.token = resp.data.token;
 
           $state.go('home');
           //console.log($window.sessionStorage.token)
         } else {
-          delete $window.sessionStorage.token;
+          localStorage.removeItem("token");
           $state.reload('login');
           console.log(resp.data.message) //creare messaggio errore
         }
