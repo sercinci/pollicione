@@ -60429,8 +60429,9 @@ function onDeviceReady(){
 
   push.on('registration', function(data) {
       console.log(data.registrationId);
-      alert(data.registrationId);
+      
       $window.sessionStorage.registrationId = data.registrationId;
+      alert($window.sessionStorage.registrationId);
   });
 
   push.on('notification', function(data) {
@@ -60799,7 +60800,7 @@ function LoginCtrl($http, APP_CONFIG, $state, $window) {
     var userData = {
       username: w.username,
       password: w.password,
-      registrationId: $window.sessionStorage.registrationId
+      registrationId: weilaSonoUnRegisterId1234
     }
     console.log(userData)
     $http.post(APP_CONFIG.apiURL + '/api/signin', userData, {
