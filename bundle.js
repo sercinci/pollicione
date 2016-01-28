@@ -60370,6 +60370,7 @@ angular.module('pollicioneApp', [
   'ngMaterial',
 ])
 
+
 .constant('APP_CONFIG', {
   'apiURL': 'http://pollicione.eu-gb.mybluemix.net',
   //10.213.4.78
@@ -60442,6 +60443,7 @@ function onDeviceReady(){
     console.log(e.message);
   });
 }
+
 },{"./event_create":11,"./event_detail":12,"./group":13,"./group_create":14,"./group_detail":15,"./home":16,"./login":17,"./signup":18,"angular":9,"angular-animate":2,"angular-aria":4,"angular-material":6,"angular-ui-router":7}],11:[function(require,module,exports){
 var angular = require('angular');
 
@@ -60789,14 +60791,15 @@ function LoginCtrl($http, APP_CONFIG, $state, $window) {
   };
 
   vm.signIn = function(w) {
-    push.on('registration', function(data) {
+    var registrationId = push.on('registration', function(data) {
       console.log(data.registrationId);
-      alert(data.registrationId);
+      //alert(data.registrationId);
+      return data.registrationId;
     });
     var userData = {
       username: w.username,
       password: w.password,
-      registrationId: data.registrationId
+      registrationId: registrationId
     }
     console.log(userData)
     $http.post(APP_CONFIG.apiURL + '/api/signin', userData, {
