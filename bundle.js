@@ -60753,7 +60753,9 @@ function HomeCtrl($http, APP_CONFIG, $state, $window) {
   var vm = this;
 
   vm.go = function(path, param) {
-    $state.go(path, {'eventId': param});
+    $state.go(path, {
+      'eventId': param
+    });
   };
 
   vm.swipe = function(path) {
@@ -60762,6 +60764,9 @@ function HomeCtrl($http, APP_CONFIG, $state, $window) {
 
   $http.get(APP_CONFIG.apiURL + '/api/events?token=' + localStorage.token)
     .then(function(resp) {
+      if (resp.data.success == false) {
+        $state.go('login');
+      }
       vm.positiveEvents = resp.data.positiveEvents;
       vm.pendingEvents = resp.data.pendingEvents;
     });
