@@ -5,7 +5,11 @@ Client side: AngularJS
 
 Server side: NodeJS
 
-# Changelogs
+### Changelogs
+
+0.2.0
++ Push notifications
++ Local date optimization
 
 0.1.0
 + First release for tests
@@ -16,3 +20,7 @@ Server side: NodeJS
 + Members invitation or kick
 + Group leave
 - Removed Gabriel Wool
+
+### Credits
+
+_sercinci - Federico Ercole_
